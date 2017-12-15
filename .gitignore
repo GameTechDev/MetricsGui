@@ -1,0 +1,7 @@
+/sample/build/
+/sample/.vs/
+/*/imgui.ini
+*.opensdf
+*.v12.suo
+*.sdf
+*.vcxproj.user
