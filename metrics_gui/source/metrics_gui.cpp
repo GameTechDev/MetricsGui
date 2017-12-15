@@ -64,10 +64,6 @@ int CreateQuantityLabel(
     uint32_t siPrefix = NONE;
     double value = (double) quantity;
 
-    if (units == nullptr) {
-        useSiUnitPrefix = false;
-    }
-
     // Adjust SI magnitude if requested
     if (useSiUnitPrefix) {
         if (units[0] != '\0' && (
