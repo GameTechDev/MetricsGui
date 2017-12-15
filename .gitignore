@@ -1,6 +1,6 @@
 /sample/build/
 /sample/.vs/
-/*/imgui.ini
+imgui.ini
 *.opensdf
 *.v12.suo
 *.sdf
