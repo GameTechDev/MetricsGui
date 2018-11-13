@@ -1,5 +1,5 @@
 /*
-Copyright 2017 Intel Corporation
+Copyright 2017-2018 Intel Corporation
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
@@ -277,7 +277,7 @@ bool ImplD3D12::Initialize(
         HR_CHECK(HRESULT_FROM_WIN32(GetLastError()));
     }
 
-    ImGui_ImplDX12_Init(hwnd, D3D12_NUM_FRAMES_IN_FLIGHT, Device,
+    ImGui_ImplDX12_Init(Device, D3D12_NUM_FRAMES_IN_FLIGHT,
         DXGI_FORMAT_B8G8R8A8_UNORM,
         SRVHeap->GetCPUDescriptorHandleForHeapStart(),
         SRVHeap->GetGPUDescriptorHandleForHeapStart());
@@ -407,7 +407,8 @@ void ImplD3D12::Render(
     CmdList->DrawInstanced(3, 1, 0, 0);
 
     CmdList->SetDescriptorHeaps(1, &SRVHeap);
-    ImGui::Render();
+
+    ImGui_ImplDX12_RenderDrawData(ImGui::GetDrawData(), CmdList);
 
     barrier.Transition.StateBefore = D3D12_RESOURCE_STATE_RENDER_TARGET;
     barrier.Transition.StateAfter  = D3D12_RESOURCE_STATE_PRESENT;

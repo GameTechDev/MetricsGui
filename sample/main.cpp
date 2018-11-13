@@ -1,5 +1,5 @@
 /*
-Copyright 2017 Intel Corporation
+Copyright 2017-2018 Intel Corporation
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
@@ -25,6 +25,7 @@ SOFTWARE.
 #ifdef INCLUDE_DX12
 #include <imgui_impl_dx12.h>
 #endif
+#include <imgui_impl_win32.h>
 #include <metrics_gui/metrics_gui.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -36,7 +37,7 @@ SOFTWARE.
 #include "impl_d3d12.h"
 #endif
 
-extern LRESULT ImGui_ImplDX11_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 LRESULT CALLBACK WindowProc(
     HWND hWnd,
@@ -46,11 +47,7 @@ LRESULT CALLBACK WindowProc(
 {
     auto implD3D = reinterpret_cast<ImplD3DBase*>(GetWindowLongPtr(hWnd, GWLP_USERDATA));
 
-    // NOTE: Currently, ImGui_ImplDX11_WndProcHandler() and
-    // ImGui_ImplDX12_WndProcHandler() are identical and API-implementation
-    // independant (so, we can use the DX11 version here even if we're using
-    // the DX12 interface.
-    if (ImGui_ImplDX11_WndProcHandler(hWnd, message, wParam, lParam)) {
+    if (ImGui_ImplWin32_WndProcHandler(hWnd, message, wParam, lParam)) {
         return true;
     }
 
@@ -202,6 +199,11 @@ int main(
         hInstance,
         implD3D);
 
+    // Initialize ImGui
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGui_ImplWin32_Init(hwnd);
+
     // Initialize D3D resources
     if (!implD3D->Initialize(hwnd)) {
         fprintf(stderr, "error: failed to initialize graphics device\n");
@@ -224,6 +226,8 @@ int main(
             if (msg.message == WM_QUIT) {
                 implD3D->Finalize();
                 delete implD3D;
+                ImGui_ImplWin32_Shutdown();
+                ImGui::DestroyContext();
                 DestroyWindow(hwnd);
                 UnregisterClass("simple_app_class", NULL);
                 return static_cast<char>(msg.wParam);
@@ -241,9 +245,11 @@ int main(
             ImGui_ImplDX11_NewFrame();
         } else {
 #ifdef INCLUDE_DX12
-            ImGui_ImplDX12_NewFrame(((ImplD3D12*) implD3D)->CmdList);
+            ImGui_ImplDX12_NewFrame();
 #endif
         }
+        ImGui_ImplWin32_NewFrame();
+        ImGui::NewFrame();
 
         // Update metrics values
         LARGE_INTEGER t;
@@ -260,7 +266,7 @@ int main(
         // Create a ImGui window to display the metrics in.
         if (ImGui::Begin("Metrics Window")) {
 
-            if (ImGui::CollapsingHeader("MetricsGuiPlot::DrawList()", 0, true, true)) {
+            if (ImGui::CollapsingHeader("MetricsGuiPlot::DrawList()", ImGuiTreeNodeFlags_CollapsingHeader | ImGuiTreeNodeFlags_DefaultOpen)) {
                 if (ImGui::TreeNode("Plot options")) {
                     int plotRowCount = (int) listPlot.mInlinePlotRowCount;
                     int vbarMinWidth = (int) listPlot.mVBarMinWidth;
@@ -290,7 +296,7 @@ int main(
             }
             ImGui::Spacing();
 
-            if (ImGui::CollapsingHeader("MetricsGuiPlot::DrawHistory()", 0, true, true)) {
+            if (ImGui::CollapsingHeader("MetricsGuiPlot::DrawHistory()", ImGuiTreeNodeFlags_CollapsingHeader | ImGuiTreeNodeFlags_DefaultOpen)) {
                 ImGui::Separator();
                 ImGui::SetNextTreeNodeOpen(true, ImGuiSetCond_FirstUseEver);
                 if (ImGui::TreeNode("Individual metrics")) {
@@ -372,6 +378,9 @@ int main(
             ImGui::Spacing();
         }
         ImGui::End();
+
+        ImGui::EndFrame();
+        ImGui::Render();
 
         // Render the scene (a single triangle in this sample).
         implD3D->Render(resourcesIndex);

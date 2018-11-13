@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="v120-nodx12-debug|x64">
       <Configuration>v120-nodx12-debug</Configuration>
@@ -22,32 +22,32 @@
     <ProjectGuid>{F6BE1E98-E164-40A8-BCA5-1631F2E16618}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>sample</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='v120-nodx12-debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='v120-nodx12-release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='v140-debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='v140-release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
@@ -96,7 +96,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>
         ..\imgui;
-        ..\imgui\examples\directx11_example;
+        ..\imgui\examples;
         ..\metrics_gui\include;
         $(intdir)
       </AdditionalIncludeDirectories>
@@ -146,7 +146,7 @@
   <ItemDefinitionGroup Condition="'$(MyIncludeDx12)'=='true'">
     <ClCompile>
       <AdditionalIncludeDirectories>
-        ..\imgui\examples\directx12_example;
+        ..\imgui\examples;
         %(AdditionalIncludeDirectories)
       </AdditionalIncludeDirectories>
       <PreprocessorDefinitions>
@@ -169,8 +169,9 @@
     <ClInclude Include="..\imgui\imconfig.h" />
     <ClInclude Include="..\imgui\imgui.h" />
     <ClInclude Include="..\imgui\imgui_internal.h" />
-    <ClInclude Include="..\imgui\examples\directx11_example\imgui_impl_dx11.h" />
-    <ClInclude Include="..\imgui\examples\directx12_example\imgui_impl_dx12.h" />
+    <ClInclude Include="..\imgui\examples\imgui_impl_dx11.h" />
+    <ClInclude Include="..\imgui\examples\imgui_impl_dx12.h" />
+    <ClInclude Include="..\imgui\examples\imgui_impl_win32.h" />
     <ClInclude Include="..\metrics_gui\include\metrics_gui\metrics_gui.h" />
   </ItemGroup>
   <ItemGroup>
@@ -179,8 +180,10 @@
     <ClCompile Include="impl_d3d12.cpp" Condition="'$(MyIncludeDx12)'=='true'" />
     <ClCompile Include="..\imgui\imgui.cpp" />
     <ClCompile Include="..\imgui\imgui_draw.cpp" />
-    <ClCompile Include="..\imgui\examples\directx11_example\imgui_impl_dx11.cpp" />
-    <ClCompile Include="..\imgui\examples\directx12_example\imgui_impl_dx12.cpp" Condition="'$(MyIncludeDx12)'=='true'" />
+    <ClCompile Include="..\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="..\imgui\examples\imgui_impl_dx11.cpp" />
+    <ClCompile Include="..\imgui\examples\imgui_impl_dx12.cpp" Condition="'$(MyIncludeDx12)'=='true'" />
+    <ClCompile Include="..\imgui\examples\imgui_impl_win32.cpp" />
     <ClCompile Include="..\metrics_gui\source\metrics_gui.cpp" />
   </ItemGroup>
   <ItemGroup>

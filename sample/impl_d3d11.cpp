@@ -1,5 +1,5 @@
 /*
-Copyright 2017 Intel Corporation
+Copyright 2017-2018 Intel Corporation
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
@@ -155,7 +155,7 @@ bool ImplD3D11::Initialize(
         HR_CHECK(Device->CreateBuffer(&desc, &data, &VertexBuffer));
     }
 
-    ImGui_ImplDX11_Init(hwnd, Device, DeviceContext);
+    ImGui_ImplDX11_Init(Device, DeviceContext);
     ImGui_ImplDX11_CreateDeviceObjects();
 
     return true;
@@ -257,7 +257,7 @@ void ImplD3D11::Render(
 
     DeviceContext->DrawInstanced(3, 1, 0, 0);
 
-    ImGui::Render();
+    ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 
     HR_CHECK(DXGISwapChain1->Present(1, 0));
 }

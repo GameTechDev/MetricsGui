@@ -13,11 +13,17 @@
     <ClCompile Include="..\imgui\imgui_draw.cpp">
       <Filter>ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="..\imgui\examples\directx11_example\imgui_impl_dx11.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
     <ClCompile Include="..\metrics_gui\source\metrics_gui.cpp">
       <Filter>MetricsGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui\examples\imgui_impl_dx11.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui\examples\imgui_impl_win32.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui\imgui_widgets.cpp">
+      <Filter>ImGui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -25,12 +31,6 @@
     <ClInclude Include="impl_d3d11.h" />
     <ClInclude Include="impl_d3d12.h" />
     <ClInclude Include="..\imgui\imgui.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\imgui\examples\directx11_example\imgui_impl_dx11.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\imgui\examples\directx12_example\imgui_impl_dx12.h">
       <Filter>ImGui</Filter>
     </ClInclude>
     <ClInclude Include="..\imgui\imgui_internal.h">
@@ -41,6 +41,15 @@
     </ClInclude>
     <ClInclude Include="..\metrics_gui\include\metrics_gui\metrics_gui.h">
       <Filter>MetricsGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\imgui\examples\imgui_impl_dx11.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\imgui\examples\imgui_impl_dx12.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\imgui\examples\imgui_impl_win32.h">
+      <Filter>ImGui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
