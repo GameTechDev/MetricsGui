@@ -1,20 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="v120-nodx12-debug|x64">
-      <Configuration>v120-nodx12-debug</Configuration>
+    <ProjectConfiguration Include="debug-nodx12|x64">
+      <Configuration>debug-nodx12</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="v120-nodx12-release|x64">
-      <Configuration>v120-nodx12-release</Configuration>
+    <ProjectConfiguration Include="release-nodx12|x64">
+      <Configuration>release-nodx12</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="v140-debug|x64">
-      <Configuration>v140-debug</Configuration>
+    <ProjectConfiguration Include="debug|x64">
+      <Configuration>debug</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="v140-release|x64">
-      <Configuration>v140-release</Configuration>
+    <ProjectConfiguration Include="release|x64">
+      <Configuration>release</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
@@ -25,26 +25,26 @@
     <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='v120-nodx12-debug|x64'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug-nodx12|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='v120-nodx12-release|x64'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release-nodx12|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='v140-debug|x64'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='v140-release|x64'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
@@ -59,22 +59,22 @@
   <ImportGroup Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <PropertyGroup Label="UserMacros" Condition="'$(Configuration)'=='v120-nodx12-debug'">
+  <PropertyGroup Label="UserMacros" Condition="'$(Configuration)'=='debug-nodx12'">
     <MyToolset>v120</MyToolset>
     <MyConfig>debug</MyConfig>
     <MyIncludeDx12>false</MyIncludeDx12>
   </PropertyGroup>
-  <PropertyGroup Label="UserMacros" Condition="'$(Configuration)'=='v120-nodx12-release'">
+  <PropertyGroup Label="UserMacros" Condition="'$(Configuration)'=='release-nodx12'">
     <MyToolset>v120</MyToolset>
     <MyConfig>release</MyConfig>
     <MyIncludeDx12>false</MyIncludeDx12>
   </PropertyGroup>
-  <PropertyGroup Label="UserMacros" Condition="'$(Configuration)'=='v140-debug'">
+  <PropertyGroup Label="UserMacros" Condition="'$(Configuration)'=='debug'">
     <MyToolset>v140</MyToolset>
     <MyConfig>debug</MyConfig>
     <MyIncludeDx12>true</MyIncludeDx12>
   </PropertyGroup>
-  <PropertyGroup Label="UserMacros" Condition="'$(Configuration)'=='v140-release'">
+  <PropertyGroup Label="UserMacros" Condition="'$(Configuration)'=='release'">
     <MyToolset>v140</MyToolset>
     <MyConfig>release</MyConfig>
     <MyIncludeDx12>true</MyIncludeDx12>
@@ -92,7 +92,7 @@
   <ItemDefinitionGroup>
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>
         ..\imgui;

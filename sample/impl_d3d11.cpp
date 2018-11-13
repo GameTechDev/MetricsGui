@@ -224,6 +224,8 @@ void ImplD3D11::Resize(
 void ImplD3D11::Render(
     uint32_t resourcesIndex)
 {
+    (void) resourcesIndex;
+
     const float clearColor[] = { 0.0f, 0.2f, 0.4f, 1.0f };
     DeviceContext->ClearRenderTargetView(BackBufferRTV, clearColor);
 
